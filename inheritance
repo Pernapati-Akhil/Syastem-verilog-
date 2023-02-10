@@ -1,0 +1,37 @@
+
+// Code your design here
+class packet;
+   int d=0;
+  function void display();
+    $display("\tparentpkt : d = %0d ",d);
+  endfunction
+ endclass
+
+class child_packet extends packet;
+  
+  int a=10,c;
+  function void display();
+    super.d=20;
+  	c = super.d + a;
+    $display("\tchildpkt : a = %0d c = %0d",a,c,super.d);
+    super.display;
+  endfunction 
+endclass  
+  
+module inhe;
+  packet p_1;
+  child_packet p_2;
+  int d_1;
+   initial 
+   begin
+    p_1 = new();
+     p_1.display;
+    p_2 = new();
+    p_2.display;
+	$display("------------------------------------");
+     $display("\tpkt1 d = %0d",p_1.d);
+     $display("\tchildpkt : a = %0d c = %0d",p_2.a,p_2.c,p_1.d);
+     
+    end
+
+endmodule
